@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="da">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Opskrift på Flæskesteg</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            margin: 20px;
+            background-color: #f9f9f9;
+        }
+        h1 {
+            color: #b03a2e;
+            text-align: center;
+        }
+        img {
+            display: block;
+            margin: 0 auto 20px;
+            max-width: 100%;
+            height: auto;
+        }
+        .recipe {
+            background: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        ol {
+            margin: 0;
+            padding: 0 0 0 20px;
+        }
+        .scaler {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .scaler input {
+            width: 50px;
+            padding: 5px;
+            text-align: center;
+        }
+        .scaler button {
+            padding: 5px 10px;
+            background-color: #b03a2e;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .scaler button:hover {
+            background-color: #8a2c22;
+        }
+    </style>
+</head>
+<body>
+    <h1>Opskrift på Flæskesteg</h1>
+    <img src="https://upload.wikimedia.org/wikipedia/commons/4/4d/Fl%C3%A6skesteg.JPG" alt="Flæskesteg">
+    <div class="scaler">
+        <label for="portioner">Antal personer:</label>
+        <input type="number" id="portioner" value="4" min="2" max="24">
+        <button onclick="skalereOpskrift()">Skaler opskrift</button>
+    </div>
+    <div class="recipe">
+        <h2>Ingredienser:</h2>
+        <ul id="ingredienser">
+            <li><span data-base="1.5">1,5</span> kg svinekam med svær</li>
+            <li><span data-base="2">2</span> tsk groft salt</li>
+            <li><span data-base="1">1</span> tsk friskkværnet sort peber</li>
+            <li><span data-base="5">5</span> laurbærblade</li>
+            <li><span data-base="2">2</span> dl vand</li>
+        </ul>
+        <h2>Fremgangsmåde:</h2>
+        <ol>
+            <li>Forvarm ovnen til 200°C.</li>
+            <li>Sørg for, at sværen er ridset helt igennem med 0,5 cm mellemrum. Hvis det ikke er gjort, kan du bruge en skarp kniv.</li>
+            <li>Gnid sværen godt med salt, så det kommer ned i alle rillerne. Drys med peber.</li>
+            <li>Placer stegen i en bradepande med sværen opad. Læg laurbærblade mellem rillerne.</li>
+            <li>Hæld vandet i bunden af bradepanden for at holde stegen saftig.</li>
+            <li>Sæt stegen i ovnen og steg i ca. 1,5 time. Hold øje med, at sværen bliver sprød – hvis ikke, kan du sætte ovnen på grillfunktion de sidste 5-10 minutter.</li>
+            <li>Brug et stegetermometer og sørg for, at kernetemperaturen er 65°C for en perfekt rosa steg eller 75°C for en mere gennemstegt variant.</li>
+            <li>Tag stegen ud af ovnen og lad den hvile i 10-15 minutter før servering.</li>
+        </ol>
+        <p>Server med klassisk tilbehør som brun sovs, rødkål og brunede kartofler. Velbekomme!</p>
+    </div>
+
+    <script>
+        function skalereOpskrift() {
+            const portioner = parseInt(document.getElementById('portioner').value);
+            const ingredienser = document.querySelectorAll('#ingredienser span');
+
+            if (portioner < 2 || portioner > 24) {
+                alert('Vælg mellem 2 og 24 personer.');
+                return;
+            }
+
+            ingredienser.forEach((ingredient) => {
+                const base = parseFloat(ingredient.getAttribute('data-base'));
+                const nyMængde = (base * portioner / 4).toFixed(2);
+                ingredient.textContent = nyMængde.replace('.00', '');
+            });
+        }
+    </script>
+</body>
+</html>
