@@ -3,4 +3,6 @@
 
  Learning to use HTML through the Odin Project
 
-index.html updated links
+ added recipes with heading, pictures and lists
+
+index.html updated links as unordered list
